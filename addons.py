@@ -16,14 +16,14 @@ def enable_addon(addon_name):
     active_addons_file = os.path.abspath(addons_dir) + "\\active_addons.txt"
     
     try:
-        if Path.is_dir(Path.joinpath(working_dir, addon_name)):
+        if Path.is_dir(Path.joinpath(addons_dir, addon_name)):
             addon_src = Path.joinpath(addons_dir, addon_name)
         else:
             print(f'Error: addon {addon_name} not found')
-            sys.exit()
+            return
     except Exception as e:
         print(f'Error: {e}')
-        sys.exit()
+        return
 
 
     if game_dir.exists():
@@ -41,7 +41,7 @@ def enable_addon(addon_name):
             file.seek(0)
             if addon_name in file.read():
                 print(f"addon '{addon_name}' already enabled")
-                sys.exit()
+                return
     except Exception as e:
         print(f'Error: {e}')
 
@@ -61,7 +61,7 @@ def enable_addon(addon_name):
 
         for file in files:
             shutil.copy2(os.path.join(root, file), os.path.join(file_target, file))
-            print(f"copying {os.path.join(relative_path, file)} to {file_target}...")
+            print(f"copying {file} to {file_target}...")
 
     try:
         with open(active_addons_file, 'a') as file:
@@ -85,14 +85,14 @@ def disable_addon(addon_name):
     active_addons_list = []
 
     try:
-        if Path.is_dir(Path.joinpath(working_dir, addon_name)):
+        if Path.is_dir(Path.joinpath(addons_dir, addon_name)):
             addon_src = Path.joinpath(addons_dir, addon_name)
         else:
             print(f'Error: addon {addon_name} not found')
-            sys.exit()
+            return
     except Exception as e:
         print(f'Error: {e}')
-        sys.exit()
+        return
 
     try:
         with open(active_addons_file, "r") as input:
@@ -107,7 +107,7 @@ def disable_addon(addon_name):
                 shutil.move(temp, active_addons_file)
             else:
                 print(f"addon '{addon_name}' already disabled or not found")
-                sys.exit()
+                return
     except Exception as e:
         print(f'Error: {e}')
 
@@ -123,7 +123,6 @@ def disable_addon(addon_name):
     
 
     for root, dirs, files in os.walk(game_dir, topdown=False):
-
         for file in files:
             if file in file_list:
                 os.remove(os.path.join(root, file))
@@ -139,8 +138,8 @@ def disable_addon(addon_name):
 
 
 if __name__ == "__main__":
-    #addon_name = 'coolmod'
+    addon_name = 'coolmod'
     #addon_name = 'evilmansion_fixed'
-    addon_name = 'dummyaddon'
+    #addon_name = 'dummyaddon'
     #enable_addon(addon_name)
     disable_addon(addon_name)

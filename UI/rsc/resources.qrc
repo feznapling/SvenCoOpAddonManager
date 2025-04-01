@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="Icons">
+    <file>icons/refresh.png</file>
+    <file>icons/icon.png</file>
+  </qresource>
+  <qresource prefix="Banner">
+    <file>images/banner.jpg</file>
+  </qresource>
+  <qresource prefix="Buttons">
+    <file>images/svenlogo.png</file>
+  </qresource>
+</RCC>

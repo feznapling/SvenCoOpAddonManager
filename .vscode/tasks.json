@@ -11,12 +11,12 @@
         {
             "label": "convert rsc to py",
             "type": "shell",
-            "command": "pyside6-rcc ${workspaceFolder}/${fileBasename} -o ${workspaceFolder}/${fileBasenameNoExtension}.py",
+            "command": "pyside6-rcc ${fileDirname}/${fileBasename} -o ${fileDirname}/${fileBasenameNoExtension}_rc.py",
         },
         {
             "label": "convert ui to py",
             "type": "shell",
-            "command": "pyside6-uic ${workspaceFolder}/${fileBasename} -o ${workspaceFolder}/${fileBasenameNoExtension}.py",
+            "command": "pyside6-uic ${fileDirname}/${fileBasename} -o ${fileDirname}/${fileBasenameNoExtension}.py",
         }
     ]
 }
